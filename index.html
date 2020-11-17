@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quiz App</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="app.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header>
+    <h1>jQuery API Documentation Quiz</h1>
+  </header>
+
+  <div class="quiz-area">
+   <!-- start screen-->
+        <form class="start-screen">
+          <h2>Ready to begin?</h2>
+          <p>You will see a series of jQuery API definitions and will select the answer which best matches it.</p>
+          <button type="submit">Let's Go</button>
+        </form>
+    <!--question screen -->
+    <form class="question-screen">
+      <h2>placeholder</h2>
+      <ul>
+        <li>
+          <input type="radio" id="A" name="answer" value="${store.questions[store.questionNumber].answers[0]}">
+            <label for="A">${store.questions[store.questionNumber].answers[0]}</label><br>
+        </li>
+        <li>
+          <input type="radio" id="B" name="answer" value="${store.questions[store.questionNumber].answers[1]}">
+            <label for="B">${store.questions[store.questionNumber].answers[1]}</label><br>
+        </li>
+        <li>
+          <input type="radio" id="C" name="answer" value="${store.questions[store.questionNumber].answers[2]}">
+            <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
+        </li>
+        <li>
+          <input type="radio" id="D" name="answer" value="${store.questions[store.questionNumber].answers[3]}">
+            <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
+        </li>
+      </ul>
+      <button type="submit">Let's Go</button>
+    </form>
+    <!-- might simplify feedback section to appear below question-->
+    <form class="feedback-1">
+      <h2>Well Done!</h2>
+      <p>You got it!</p>
+      <button type="button">Next</button>
+    </form>
+    
+    <form class="feedback-2">
+      <h2>Oh man!</h2>
+      <p>You got it wrong! The Correct answer was ? </p>
+      <button type="button">Next</button>
+    </form>
+
+    <form class="start-screen">
+      <h2>Retry?</h2>
+      
+      <button type="button">Restart</button>
+    </form>
+
+  </div>
+
+
+  <main></main>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
+
+
+<!--
+  Questions:
+
+  Reject a Deferred object and call any failCallbacks 
+  with the given context and args.
+
+  A) deferred.state()
+  B) deferred.rejectWith() !!
+  C) .deferred()
+  D) .fail()
+
+  Check the current matched set of elements against a selector, element, or jQuery object 
+  and return true if at least one of these elements matches the given arguments.
+
+  A) .isTarget()
+  B) .check()
+  C) .is() !!
+  D) .isThis
+
+  Return a number representing the current time.
+
+  A) time.deltaTime
+  B) jQuery.now() !!
+  C) jQuery.time()
+  D) .present()
+
+  Encode a set of form elements as a string for submission.
+
+  A) .string()
+  B) .text()
+  C) .toString()
+  D) .serialize() !!
+
+  Remove a handler from the event for all elements 
+  which match the current selector, based upon a specific set of root elements.
+
+  A) .unbind()
+  B) .undelegate() !!
+  C) .remove()
+  D) .unwrap()
+
+  Selects all elements that are visible.
+
+  A) .vis()
+  B) .selectVisible()
+  C) .visibleElements()
+  D) :visible Selector !!
+--> 
