@@ -6,22 +6,93 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+@font-face{
+  font-family: glitch;
+  src: url(/files/g-l-i-t-c-h.ttf);
+}
+
+@font-face{
+  font-family: openBrush;
+  src: url(/files/OpenBrush.ttf);
+}
+
+@font-face{
+  font-family: againts;
+  src: url(/files/againts.otf);
+}
+
+
 
 .quiz-area{
   display: flex;
-  text-align: center;
+  text-align: left;
   padding: 30px;
+  justify-content: center;
+  background-color: #ffcfea;
+  border-radius: 50px;
+  font-family: againts;
+  letter-spacing: 1px;
+  border-color: #bfb9ff;
+  border-style: ridge;
+}
+
+body{
+  background-color: #afe9ff;
+  background-image: url(/files/Play3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 
 .question-screen{
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: left;
 }
 
 h1{
   text-align: center;
+  font-family: againts;
+  font-size: xx-large;
+  letter-spacing: 3px;
+  padding: 7px;
 }
 
 ul{
   list-style: none;
   text-align: center;
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  
+}
+
+li{
+  display: flex;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+button{
+  background-color: #bfb9ff;
+  color: #feffbe;
+}
+
+.start-area{
+  display: flex;
+  text-align: left;
+  padding: 30px;
+  justify-content: center;
+  background-color: #ffcfea;
+  border-radius: 50px;
+  font-family: againts;
+  letter-spacing: 1px;
+  border-color: #bfb9ff;
+  border-style: ridge;
 }
