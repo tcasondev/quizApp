@@ -25,12 +25,12 @@
 
 .quiz-area{
   display: flex;
-  text-align: left;
+  text-align: center;
   padding: 30px;
   justify-content: center;
   background-color: #ffcfea;
   border-radius: 50px;
-  font-family: againts;
+  
   letter-spacing: 1px;
   border-color: #bfb9ff;
   border-style: ridge;
@@ -95,4 +95,26 @@ button{
   letter-spacing: 1px;
   border-color: #bfb9ff;
   border-style: ridge;
+}
+
+@media all and (min-width: 600px){
+  body{
+    background-color: #afe9ff;
+    background-image: url(/files/Play3.png);
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
+  }
+
+  .quiz-area{
+    display: flex;
+    text-align: left;
+    
+    justify-content: center;
+    background-color: #ffcfea;
+    border-radius: 50px;
+    
+    letter-spacing: 1px;
+    border-color: #bfb9ff;
+    border-style: ridge;
 }
