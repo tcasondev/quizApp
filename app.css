@@ -10,12 +10,12 @@
 
 @font-face{
   font-family: openBrush;
-  src: url('files/OpenBrush.ttf');
+  src: url('../files/OpenBrush.ttf');
 }
 
 @font-face{
   font-family: againts;
-  src: url('files/againts.otf');
+  src: url('../files/againts.otf');
 }
 
 
@@ -35,7 +35,7 @@
 
 body{
   background-color: #afe9ff;
-  background-image: url('files/Play3.PNG');
+  background-image: url('../files/Play3.png');
   background-repeat: no-repeat;
   background-size: cover;
   
@@ -97,10 +97,11 @@ button{
 @media all and (min-width: 600px){
   body{
     background-color: #afe9ff;
-    background-image: url('files/Play3.PNG');
+    background-image: url('../files/Play3.png');
     background-repeat: no-repeat;
     background-size: 75%;
     background-position: center;
+    
   }
 
   .quiz-area{
