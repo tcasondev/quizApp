@@ -66,11 +66,15 @@ const store = {
   ],
   quizStarted: false,
   questionNumber: 0,
-  score: 0
+  score: 0,
+  correct: false
 };
 
 //renders opening screen
 
+function generateHtml(){
+$('main').html('<div id="app"></div> <div class ="start-area"></div> <div class="quiz-area"></div>')
+}
 
 function startScreen(){
   
@@ -79,6 +83,48 @@ function startScreen(){
     <p>You will see a series of jQuery API definitions and will select the answer which best matches it.</p>
     <button type="submit" id="submit" autofocus>Let's Go</button>
   </form>`);
+}
+
+function questionsUi(){
+  return `<div class="questionPage">
+  <form class="question-screen">
+  <p>#${store.questionNumber + 1}</p>
+  <h2>${store.questions[store.questionNumber].question}</h2>
+  <ul>
+    <li>
+      <input type="radio" id="A" name="answer" value="A" autofocus required>
+        <label for="A">${store.questions[store.questionNumber].answers[0]}</label><br>
+    </li>
+    <li>
+      <input type="radio" id="B" name="answer" value="B">
+        <label for="B">${store.questions[store.questionNumber].answers[1]}</label><br>
+    </li>
+    <li>
+      <input type="radio" id="C" name="answer" value="C">
+        <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
+    </li>
+    <li>
+      <input type="radio" id="D" name="answer" value="D">
+        <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
+    </li>
+  </ul>  
+  <button id="questionSubmit" type="button">Submit</button>
+  <p>Points: ${store.score} out of ${store.questions.length}</p>
+</form>
+<form class="feedback" id="feedback">
+
+</form>
+
+  </div>`
+}
+
+function renderGameOver(){
+  $('.quiz-area').html(`<form class="start-screen" id="restart">
+      <h2>Retry?</h2>
+      <p>Your score was: ${store.score}
+      <button type="submit">Restart</button>
+    </form>
+    </div>`)
 }
 
 function render(){
@@ -101,47 +147,30 @@ function render(){
 }
 
 function renderQuestion(){
-  $('.quiz-area').html( 
-    `<div class="questionPage">
-    <form class="question-screen">
-    <p>#${store.questionNumber + 1}</p>
-    <h2>${store.questions[store.questionNumber].question}</h2>
-    <ul>
-      <li>
-        <input type="radio" id="A" name="answer" value="A" autofocus required>
-          <label for="A">${store.questions[store.questionNumber].answers[0]}</label><br>
-      </li>
-      <li>
-        <input type="radio" id="B" name="answer" value="B">
-          <label for="B">${store.questions[store.questionNumber].answers[1]}</label><br>
-      </li>
-      <li>
-        <input type="radio" id="C" name="answer" value="C">
-          <label for="C">${store.questions[store.questionNumber].answers[2]}</label>
-      </li>
-      <li>
-        <input type="radio" id="D" name="answer" value="D">
-          <label for="D">${store.questions[store.questionNumber].answers[3]}</label>
-      </li>
-    </ul>  
-    <button id="questionSubmit" type="button">Submit</button>
-    <p>Points: ${store.score} out of ${store.questions.length}</p>
-  </form>
-  <form class="feedback-1" id="feedback-1">
-      <h2>Well Done!</h2>
-      <p>You got it!</p>
-      <button type="button" id="nextQuestion">Next</button>
-  </form>
-  <form class="feedback-2" id="feedback-2">
-      <h2>Oh man!</h2>
-      <p>You got it wrong! The Correct answer was ${store.questions[store.questionNumber].correctAnswer} </p>
-      <button type="button" id="nextQuestion">Next</button>
-    </form>
-    </div>`);
+  $('.quiz-area').html(questionsUi());
 
-    $("#feedback-1").hide();
-    $('#feedback-2').hide();
+    $("#feedback-1").empty();
+    $('#feedback-2').empty();
   console.log('question')
+}
+
+function renderAnswerFeedback(){
+  $('#questionSubmit').empty()
+  if (store.correct = true){
+  $('#feedback').html(correctFeedbackUi());
+  store.correct = false;
+  } else {
+    $('#feedback').html(incorrectFeedbackUi())
+  }
+  nextQuestion();
+
+}
+
+function submitRestart(){
+  $('#restart').submit(function(event){
+    event.preventDefault()
+    renderRestart()
+  })
 }
 
 function submit(){
@@ -151,14 +180,12 @@ function submit(){
       let correct = store.questions[store.questionNumber].correctAnswer;
       if(answer != undefined){
        if(answer === correct){
-        $('#questionSubmit').hide();
-        $('#feedback-1').show();
+        store.correct = true;
         store.score++;
-      } else {
-        $('#questionSubmit').hide()
-        $('#feedback-2').show()
-      }
+        render
+      } 
       store.questionNumber++;
+      renderAnswerFeedback()
       }
     })
 }
@@ -185,14 +212,7 @@ function startQuiz(){
 })
 }
 
-function renderGameOver(){
-  $('.quiz-area').html(`<form class="start-screen">
-      <h2>Retry?</h2>
-      <p>Your score was: ${store.score}
-      <button type="submit">Restart</button>
-    </form>
-    </div>`)
-}
+
 
 function headerUi(){
   return `
@@ -205,42 +225,35 @@ function headerUi(){
   `
 }
 
-function generateHtml(){
-$('#mainBody').html('<div id="app"></div> <div class ="start-area"></div> <div class="quiz-area"></div>')
+
+
+function correctFeedbackUi(){
+  return `<h2>Well Done!</h2>
+  <p>You got it!</p>
+  <button type="button" id="nextQuestion">Next</button>
+  ` 
 }
 
-$(function main(){
+function incorrectFeedbackUi(){
+  return `<h2>Oh man!</h2>
+  <p>You got it wrong! The Correct answer was ${store.questions[store.questionNumber].correctAnswer} </p>
+  <button type="button" id="nextQuestion">Next</button>`;
+}
+
+
+
+function renderRestart(){
+  $('main').empty()
+  main()
+}
+
+function main(){
   generateHtml()
   render();
   startQuiz();
   submit();
   nextQuestion();
   
-  })
+  }
+$(main)
 
-/**
- * 
- * Technical requirements:
- * 
- * Your app should include a render() function, that regenerates the view each time the store is updated. 
- * See your course material, consult your instructor, and reference the slides for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
- * 
- */
-
-/********** TEMPLATE GENERATION FUNCTIONS **********/
-
-// These functions return HTML templates
-
-/********** RENDER FUNCTION(S) **********/
-
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
-
-/********** EVENT HANDLER FUNCTIONS **********/
-
-// These functions handle events (submit, click, etc)
