@@ -156,7 +156,7 @@ function renderQuestion(){
 
 function renderAnswerFeedback(){
   $('#questionSubmit').empty()
-  if (store.correct = true){
+  if (store.correct === true){
   $('#feedback').html(correctFeedbackUi());
   store.correct = false;
   } else {
@@ -182,7 +182,7 @@ function submit(){
        if(answer === correct){
         store.correct = true;
         store.score++;
-        render
+        render()
       } 
       store.questionNumber++;
       renderAnswerFeedback()
